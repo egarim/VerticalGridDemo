@@ -121,6 +121,24 @@ namespace VerticalGridDemo
             if (selectedCustomer != null)
             {
                 vGridControl1.DataSource = this.customers.Where(customer => customer.Id == selectedCustomer.Id).ToList() ;
+
+
+                //vGridControl1.DataSource = new List<object> { customerData } ;
+
+                //vGridControl1.DataSource=this.customers.Where(customers => customers.Id == selectedCustomer.Id).Select(c => new
+                //{
+                //    Id = c.Id,
+                //    FirstName = c.FirstName,
+                //    LastName = c.LastName,
+                //    FullName = c.FullName,
+                //    Email = c.Email,
+                //    Phone = c.Phone,
+                //    IsActive = c.IsActive
+                //}).ToList();
+
+          
+
+
                 vGridControl1.Refresh();
             }
         }
