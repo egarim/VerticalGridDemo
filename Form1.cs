@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraVerticalGrid;
 using DevExpress.XtraVerticalGrid.Rows;
+using DevExpress.XtraEditors.Repository;
 using VerticalGridDemo.Services;
 using VerticalGridDemo.Models;
 
@@ -87,8 +88,21 @@ namespace VerticalGridDemo
             phoneRow.Properties.FieldName = "Phone";
             contactInfo.ChildRows.Add(phoneRow);
             
+            // Create country lookup row
             EditorRow countryRow = new EditorRow("Country");
             countryRow.Properties.FieldName = "Country";
+            
+            // Create and configure the lookup repository item
+            RepositoryItemLookUpEdit countryLookup = new RepositoryItemLookUpEdit();
+            countryLookup.DataSource = DataService.GetCountries();
+            countryLookup.DisplayMember = "Name";
+            countryLookup.ValueMember = ""; // Use the entire object
+            countryLookup.ShowHeader = false;
+            countryLookup.ShowLines = false;
+            countryLookup.DropDownRows = 10;
+            
+            // Apply the lookup to the country row
+            countryRow.Properties.RowEdit = countryLookup;
             locationInfo.ChildRows.Add(countryRow);
             
             EditorRow isActiveRow = new EditorRow("Is Active");
